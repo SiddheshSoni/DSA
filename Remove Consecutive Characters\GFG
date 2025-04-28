@@ -1,0 +1,18 @@
+https://www.geeksforgeeks.org/problems/consecutive-elements2306/1
+
+class Solution {
+  public:
+    string removeConsecutiveCharacter(string& s) {
+        // code here.
+        string ans="";
+        int k=0;
+        ans += s[0];
+        for(int i=0; i<s.length(); i++){
+            if(ans[k] != s[i] ){
+                ans+=s[i];
+                k++;
+            }
+        }
+        return ans;
+    }
+};
