@@ -2,15 +2,23 @@ https://www.geeksforgeeks.org/problems/counting-sort/1
 
 class Solution {
   public:
-    bool isPossible(int k, vector<int> &arr1, vector<int> &arr2) {
-      
-        sort(arr1.begin(), arr1.end());
-        
-        sort(arr2.begin(), arr2.end(), greater<int>());
-        
-        for(int i=0; i< arr1.size(); i++){
-            if(arr1[i]+ arr2[i]<k) return false;
+    // Function to arrange all letters of a string in lexicographical
+    // order using Counting Sort.
+    string countSort(string arr) {
+        // code here
+        int hash[26] ={0};
+        string ans="";
+        for(int i=0; i<arr.length(); i++){
+            hash[arr[i]-97]++;    
         }
-        return true;
+        
+        for(int i=0; i<26; i++){
+        
+            while(hash[i]){
+                ans += i +97;
+                hash[i]--;
+            }
+        }
+        return ans;
     }
 };
