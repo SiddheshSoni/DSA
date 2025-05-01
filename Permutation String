@@ -1,0 +1,34 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void swap(int i, int ind, string& nums){
+    char temp = nums[i];
+    nums[i]= nums[ind];
+    nums[ind]= temp;
+}
+void perm(string& nums, vector<string>& ans, int ind) {
+    if(ind == nums.length()){
+        ans.push_back(nums);
+        return;
+    }
+
+    for(int i= ind; i<nums.length(); i++){
+        swap(i, ind, nums);
+        perm(nums, ans, ind+1);
+        swap(i, ind, nums);
+    }
+    return;
+}
+void permute(string& nums) {
+    vector<string> ans;
+    perm(nums, ans, 0);
+    for(auto i: ans){
+            cout<<i<<" ";
+    }
+}
+int main(){
+    string nums="abc";
+    permute(nums);
+    return 0;
+}
