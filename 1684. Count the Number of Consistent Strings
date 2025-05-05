@@ -1,0 +1,58 @@
+// Using Sets
+
+class Solution {
+public:
+    int countConsistentStrings(string allowed, vector<string>& words) {
+        
+        set<char> allow;
+        for(int i=0; i < allowed.length(); i++){
+            allow.insert(allowed[i]);
+        }
+
+        int count=0;
+        for(int i=0; i < words.size(); i++){
+            bool flag = true;
+            for(int j=0; j<words[i].length(); j++){
+                if(allow.find(words[i][j]) == allow.end()){
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag) count++;
+        }
+
+        return count;
+    }
+};
+/////////////////////////////
+
+//using hashMap
+class Solution {
+public:
+    int countConsistentStrings(string allowed, vector<string>& words) {
+        // using hashmap to store for search and fast approach
+        
+        vector<int> hash(26, 0);
+
+        for(int i=0; i < allowed.length(); i++){
+           hash[allowed[i]- 'a'] = 1;
+        }
+        //~~~~~~~~~~~//
+        
+        int count=0;
+
+        for(int i=0; i < words.size(); i++){
+            bool flag = true;
+            for(int j=0; j<words[i].length(); j++){
+                if(hash[words[i][j] - 'a'] == 0){
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag) count++;
+        }
+
+        return count;
+    }
+};
+///
